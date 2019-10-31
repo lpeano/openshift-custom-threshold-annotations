@@ -1,0 +1,528 @@
+(main.Services) (len=1) {
+ (string) (len=7) "default": (map[string]main.Service) (len=1) {
+  (string) (len=15) "docker-registry": (main.Service) {
+   Service: (string) (len=15) "docker-registry",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615138",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ }
+}
+(main.Services) (len=1) {
+ (string) (len=7) "default": (map[string]main.Service) (len=2) {
+  (string) (len=15) "docker-registry": (main.Service) {
+   Service: (string) (len=15) "docker-registry",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615138",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  },
+  (string) (len=10) "kubernetes": (main.Service) {
+   Service: (string) (len=10) "kubernetes",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615139",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ }
+}
+(main.Services) (len=1) {
+ (string) (len=7) "default": (map[string]main.Service) (len=3) {
+  (string) (len=15) "docker-registry": (main.Service) {
+   Service: (string) (len=15) "docker-registry",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615138",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  },
+  (string) (len=10) "kubernetes": (main.Service) {
+   Service: (string) (len=10) "kubernetes",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615139",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  },
+  (string) (len=6) "router": (main.Service) {
+   Service: (string) (len=6) "router",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615141",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ }
+}
+(main.Services) (len=2) {
+ (string) (len=7) "default": (map[string]main.Service) (len=3) {
+  (string) (len=15) "docker-registry": (main.Service) {
+   Service: (string) (len=15) "docker-registry",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615138",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  },
+  (string) (len=10) "kubernetes": (main.Service) {
+   Service: (string) (len=10) "kubernetes",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615139",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  },
+  (string) (len=6) "router": (main.Service) {
+   Service: (string) (len=6) "router",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615141",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ },
+ (string) (len=8) "kube-dns": (map[string]main.Service) (len=1) {
+  (string) (len=8) "kube-dns": (main.Service) {
+   Service: (string) (len=8) "kube-dns",
+   Namespace: (string) (len=8) "kube-dns",
+   resourceVersion: (string) (len=6) "615142",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ }
+}
+(main.Services) (len=3) {
+ (string) (len=7) "default": (map[string]main.Service) (len=3) {
+  (string) (len=15) "docker-registry": (main.Service) {
+   Service: (string) (len=15) "docker-registry",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615138",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  },
+  (string) (len=10) "kubernetes": (main.Service) {
+   Service: (string) (len=10) "kubernetes",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615139",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  },
+  (string) (len=6) "router": (main.Service) {
+   Service: (string) (len=6) "router",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615141",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ },
+ (string) (len=8) "kube-dns": (map[string]main.Service) (len=1) {
+  (string) (len=8) "kube-dns": (main.Service) {
+   Service: (string) (len=8) "kube-dns",
+   Namespace: (string) (len=8) "kube-dns",
+   resourceVersion: (string) (len=6) "615142",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ },
+ (string) (len=19) "openshift-apiserver": (map[string]main.Service) (len=1) {
+  (string) (len=3) "api": (main.Service) {
+   Service: (string) (len=3) "api",
+   Namespace: (string) (len=19) "openshift-apiserver",
+   resourceVersion: (string) (len=6) "615144",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ }
+}
+(main.Services) (len=4) {
+ (string) (len=7) "default": (map[string]main.Service) (len=3) {
+  (string) (len=15) "docker-registry": (main.Service) {
+   Service: (string) (len=15) "docker-registry",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615138",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  },
+  (string) (len=10) "kubernetes": (main.Service) {
+   Service: (string) (len=10) "kubernetes",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615139",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  },
+  (string) (len=6) "router": (main.Service) {
+   Service: (string) (len=6) "router",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615141",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ },
+ (string) (len=8) "kube-dns": (map[string]main.Service) (len=1) {
+  (string) (len=8) "kube-dns": (main.Service) {
+   Service: (string) (len=8) "kube-dns",
+   Namespace: (string) (len=8) "kube-dns",
+   resourceVersion: (string) (len=6) "615142",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ },
+ (string) (len=19) "openshift-apiserver": (map[string]main.Service) (len=1) {
+  (string) (len=3) "api": (main.Service) {
+   Service: (string) (len=3) "api",
+   Namespace: (string) (len=19) "openshift-apiserver",
+   resourceVersion: (string) (len=6) "615144",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ },
+ (string) (len=29) "openshift-service-cert-signer": (map[string]main.Service) (len=1) {
+  (string) (len=27) "service-serving-cert-signer": (main.Service) {
+   Service: (string) (len=27) "service-serving-cert-signer",
+   Namespace: (string) (len=29) "openshift-service-cert-signer",
+   resourceVersion: (string) (len=6) "615146",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ }
+}
+(main.Services) (len=5) {
+ (string) (len=21) "openshift-web-console": (map[string]main.Service) (len=1) {
+  (string) (len=10) "webconsole": (main.Service) {
+   Service: (string) (len=10) "webconsole",
+   Namespace: (string) (len=21) "openshift-web-console",
+   resourceVersion: (string) (len=6) "615170",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=2 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=5) "exxxx",
+       Value: (string) (len=4) "xxxx"
+      },
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ },
+ (string) (len=7) "default": (map[string]main.Service) (len=3) {
+  (string) (len=15) "docker-registry": (main.Service) {
+   Service: (string) (len=15) "docker-registry",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615138",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  },
+  (string) (len=10) "kubernetes": (main.Service) {
+   Service: (string) (len=10) "kubernetes",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615139",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  },
+  (string) (len=6) "router": (main.Service) {
+   Service: (string) (len=6) "router",
+   Namespace: (string) (len=7) "default",
+   resourceVersion: (string) (len=6) "615141",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ },
+ (string) (len=8) "kube-dns": (map[string]main.Service) (len=1) {
+  (string) (len=8) "kube-dns": (main.Service) {
+   Service: (string) (len=8) "kube-dns",
+   Namespace: (string) (len=8) "kube-dns",
+   resourceVersion: (string) (len=6) "615142",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ },
+ (string) (len=19) "openshift-apiserver": (map[string]main.Service) (len=1) {
+  (string) (len=3) "api": (main.Service) {
+   Service: (string) (len=3) "api",
+   Namespace: (string) (len=19) "openshift-apiserver",
+   resourceVersion: (string) (len=6) "615144",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ },
+ (string) (len=29) "openshift-service-cert-signer": (map[string]main.Service) (len=1) {
+  (string) (len=27) "service-serving-cert-signer": (main.Service) {
+   Service: (string) (len=27) "service-serving-cert-signer",
+   Namespace: (string) (len=29) "openshift-service-cert-signer",
+   resourceVersion: (string) (len=6) "615146",
+   metrics: (main.Metrics) (len=1 cap=4) {
+    (main.metric_annotation) {
+     Name: (string) (len=5) "Prova",
+     Value: (int64) 222133,
+     AdditionalLabels: ([]main.OptionalLabel) (len=1 cap=4) {
+      (main.OptionalLabel) {
+       Name: (string) (len=3) "sse",
+       Value: (string) (len=6) "ssxxxx"
+      }
+     }
+    }
+   }
+  }
+ }
+}
