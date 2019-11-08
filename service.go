@@ -1,6 +1,7 @@
 package main
 import (
 	"encoding/json"
+        "strconv"
 	"k8s.io/klog"
         metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
         "k8s.io/api/core/v1"
@@ -9,6 +10,13 @@ import (
 	"sync/atomic"
 
 	)
+
+type Pod struct {
+	Pod string
+	Namespace string
+        resourceVersion string
+	metrics Metrics 
+}
 
 type Service struct {
 	Service string
@@ -23,20 +31,47 @@ type OptionalLabel struct {
 }
 
 type metric_annotation struct {
+	Description string `json:",omitempty"`
 	Name  string 
-	Value int64  
+	Value float64
 	AdditionalLabels []OptionalLabel `json:",omitempty"`
 }
 
 var metrics []metric_annotation
+
+// Global Pod Cache 
+var PodCache = Pod{}
+var PodCacheAtomic atomic.Value
 
 // Global Service Cache 
 var ServiceCache = Services{}
 var ServiceCacheAtomic atomic.Value
 
 type Metrics []metric_annotation
+
+// Map of thresholds where key is service name
+type Pods map[string]map[string]Pod
+
 // Map of thresholds where key is service name
 type Services map[string]map[string]Service
+
+func (p Pods) Addpod(Pd Pod)(bool, string) {
+	var reason string
+	
+	if _,ok:=p[Pd.Namespace][Pd.Pod]; ok {
+		reason="Pod allready exist"		
+		return false, reason
+	} else {
+		reason="Added"
+		klog.Infof("Adding pod %s of namespace %s", Pd.Pod,Pd.Namespace)
+		if p[Pd.Namespace] == nil {
+			klog.Infof("Namespace (%s) doesn't exixt",Pd.Namespace)
+			p[Pd.Namespace]=make(map[string]Pod)
+		}
+		p[Pd.Namespace][Pd.Pod]=Pd
+		return true, reason
+	}
+}
 
 func (s Services) Addservice(Srv Service)(bool, string) {
 	var reason string
@@ -55,7 +90,7 @@ func (s Services) Addservice(Srv Service)(bool, string) {
 		return true, reason
 	}
 }
-
+//QUI
 // Set new service instance
 func  (srv Service) SetService(ServiceName string, resourceVersion string) {
 	srv.Service= ServiceName
@@ -226,3 +261,38 @@ func (sc Services)Get_services(clientset *kubernetes.Clientset) {
 		if(appConf.LOGLEVEL == "ATOMICCACHEDEBUG" ) {spew.Dump(ServiceCacheAtomic)}
 }
 
+
+// ADDED HERE
+func is_annotated(annotations map[string]string) (bool , string) {
+
+        v , found := annotations[appConf.annotation_name]
+        x, err :=  strconv.ParseBool(v)
+        Use(err)
+        if ( found && x==true ) {
+                klog.V(0).Infof( "Has Annotation ... with %s",v)
+                tconfig, found := annotations[appConf.annotation_name]
+                if (found ) {
+                        klog.V(0).Infof( "thresholds_config %s", tconfig)
+                }
+                return true, v
+        } else {
+                return false, v
+        }
+
+
+}
+
+func get_annotated(annotations map[string]string) (bool , string) {
+
+        v , found := annotations[appConf.annotation_name_threshold]
+        if ( found &&  v=="true" ) {
+                klog.V(0).Infof( "level2 Has Annotation ... with %s",v)
+                tconfig, found := annotations[appConf.annotation_name]
+                if (found ) {
+                        klog.V(0).Infof( "thresholds_config %s", tconfig)
+                }
+        }
+
+        return found, v
+
+}

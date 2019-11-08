@@ -23,10 +23,10 @@ import (
 
 func TestRenewalNext(t *testing.T) {
 	now := time.Now()
-	man := &Manager{
-		RenewBefore: 7 * 24 * time.Hour,
-		nowFunc:     func() time.Time { return now },
-	}
+	timeNow = func() time.Time { return now }
+	defer func() { timeNow = time.Now }()
+
+	man := &Manager{RenewBefore: 7 * 24 * time.Hour}
 	defer man.stopRenew()
 	tt := []struct {
 		expiry   time.Time
@@ -70,9 +70,6 @@ func TestRenewFromCache(t *testing.T) {
 		case "/new-authz":
 			w.Header().Set("Location", ca.URL+"/authz/1")
 			w.WriteHeader(http.StatusCreated)
-			w.Write([]byte(`{"status": "valid"}`))
-		// authorization status request done by Manager's revokePendingAuthz.
-		case "/authz/1":
 			w.Write([]byte(`{"status": "valid"}`))
 		// cert request
 		case "/new-cert":
@@ -176,7 +173,7 @@ func TestRenewFromCache(t *testing.T) {
 	}
 
 	// trigger renew
-	hello := clientHelloInfo(exampleDomain, algECDSA)
+	hello := clientHelloInfo(exampleDomain, true)
 	if _, err := man.GetCertificate(hello); err != nil {
 		t.Fatal(err)
 	}
@@ -210,7 +207,7 @@ func TestRenewFromCacheAlreadyRenewed(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	newLeaf, err := validCert(exampleCertKey, [][]byte{newCert}, newKey, now)
+	newLeaf, err := validCert(exampleCertKey, [][]byte{newCert}, newKey)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -228,7 +225,7 @@ func TestRenewFromCacheAlreadyRenewed(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	oldLeaf, err := validCert(exampleCertKey, [][]byte{oldCert}, key, now)
+	oldLeaf, err := validCert(exampleCertKey, [][]byte{oldCert}, key)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -302,7 +299,7 @@ func TestRenewFromCacheAlreadyRenewed(t *testing.T) {
 	}
 
 	// assert the expiring cert is returned from state
-	hello := clientHelloInfo(exampleDomain, algECDSA)
+	hello := clientHelloInfo(exampleDomain, true)
 	tlscert, err := man.GetCertificate(hello)
 	if err != nil {
 		t.Fatal(err)
@@ -320,7 +317,7 @@ func TestRenewFromCacheAlreadyRenewed(t *testing.T) {
 		t.Fatal("renew took too long to occur")
 	case <-done:
 		// assert the new cert is returned from state after renew
-		hello := clientHelloInfo(exampleDomain, algECDSA)
+		hello := clientHelloInfo(exampleDomain, true)
 		tlscert, err := man.GetCertificate(hello)
 		if err != nil {
 			t.Fatal(err)

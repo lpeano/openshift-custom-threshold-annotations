@@ -21,7 +21,6 @@ import (
 	"flag"
 	"os"
 	"path/filepath"
-	"strconv"
 
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
@@ -67,41 +66,6 @@ func init_nocluster() (*kubernetes.Clientset , error) {
 	return clientset, err
 }
 
-func is_annotated(annotations map[string]string) (bool , string) {
-
-	v , found := annotations[appConf.annotation_name]
-	x, err :=  strconv.ParseBool(v)
-	Use(err)
-	if ( found && x==true ) {
-		klog.V(0).Infof( "Has Annotation ... with %s",v)
-		tconfig, found := annotations[appConf.annotation_name]
-		if (found ) {
-			klog.V(0).Infof( "thresholds_config %s", tconfig)
-		}
-		return true, v
-	} else {
-		return false, v
-	}
-	
-	
-}
-
-func get_annotated(annotations map[string]string) (bool , string) {
-
-	v , found := annotations[appConf.annotation_name_threshold]
-	if ( found &&  v=="true" ) {
-		klog.V(0).Infof( "level2 Has Annotation ... with %s",v)
-		tconfig, found := annotations[appConf.annotation_name]
-		if (found ) {
-			klog.V(0).Infof( "thresholds_config %s", tconfig)
-		}
-	}
-	
-	return found, v
-	
-}
-
-
 
 func main() {
 		// Init Envirorment parameters
@@ -113,6 +77,7 @@ func main() {
 		ServiceCache.Get_services( clientset )
 		// Start Watching Service 
 		go ServiceCache.Service_Watcher(clientset)
+		start_prometheus()
 }
 
 func homeDir() string {
