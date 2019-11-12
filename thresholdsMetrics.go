@@ -74,9 +74,12 @@ func main() {
 		if err != nil {
 			panic(err.Error())
 		} 
+		PodCache.Get_pods( clientset )
 		ServiceCache.Get_services( clientset )
-		// Start Watching Service 
+		// Start Watching Services 
 		go ServiceCache.Service_Watcher(clientset)
+		// Start Watching Pods 
+		go PodCache.Pod_Watcher(clientset)
 		start_prometheus()
 }
 
