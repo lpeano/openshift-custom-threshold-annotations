@@ -177,14 +177,12 @@ func start_prometheus() {
 	WriteTimeout:   10 * time.Second,
 	MaxHeaderBytes: 1 << 20, }
 	server.ListenAndServe()
-//	http.Handle("/metrics", *handler)
 	klog.Infof("REGISTRY %v",prometheus.DefaultRegisterer )
 }
 
 func RefreshPrometheus() {
 	for {
 		klog.Info("Wait on prometheus channel")
-		time.Sleep(2 * time.Second)	
 		SericesMetrics=ServiceCacheAtomic.Load().(Services)
 		PodsMetrics=PodCacheAtomic.Load().(Pods)
 		if(SericesMetrics == nil ){
@@ -198,6 +196,7 @@ func RefreshPrometheus() {
         		MakePodsCollectors()
 			server.Handler=*handler
 		}
+		time.Sleep(time.Duration(appConf.CacheRefreshIntervall ) * time.Second)	
 	}
 }
 

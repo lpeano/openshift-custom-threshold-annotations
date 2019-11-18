@@ -1,10 +1,37 @@
 package main
 
+import (
+    "gopkg.in/yaml.v2"
+    "io/ioutil"
+    "k8s.io/klog"
+)
+
+
+const problemYaml = `
+name: GO_BUILDER
+`
+
 type appConfig struct {
-	annotation_name string
-	annotation_name_threshold string
-	LOGLEVEL string
+	AnnotationFlag string `yaml:"AnnotationFlag"` 
+	AnnotationNameThreshold string `yaml:"AnnotationNameThreshold"` 
+	LOGLEVEL string  `yaml:"LOGLEVEL"`
+        CacheRefreshIntervall int `yaml:"CacheRefreshIntervall"`
 }
 
-//appConf.annotation_name="sia.io/thresholds"
+func (c *appConfig) GetConf(file string) (* appConfig) {
+
+    yamlFile, err := ioutil.ReadFile(file)
+    if err != nil {
+        klog.Errorf("yamlFile.Get err   #%v ", err)
+	panic(err)
+    }
+    err = yaml.Unmarshal(yamlFile, c)
+    if err != nil {
+        klog.Errorf("Unmarshal: %v", err)
+	panic(err)
+    }
+    
+    return c
+}
+
 

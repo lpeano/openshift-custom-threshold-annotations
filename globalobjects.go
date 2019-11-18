@@ -22,12 +22,12 @@ type OptionalLabel struct {
 
 func is_annotated(annotations map[string]string) (bool , string) {
 
-        v , found := annotations[appConf.annotation_name]
+        v , found := annotations[appConf.AnnotationFlag]
         x, err :=  strconv.ParseBool(v)
         Use(err)
         if ( found && x==true ) {
                 klog.V(0).Infof( "Has Annotation ... with %s",v)
-                tconfig, found := annotations[appConf.annotation_name]
+                tconfig, found := annotations[appConf.AnnotationFlag]
                 if (found ) {
                         klog.V(0).Infof( "thresholds_config %s", tconfig)
                 }
@@ -41,10 +41,10 @@ func is_annotated(annotations map[string]string) (bool , string) {
 
 func get_annotated(annotations map[string]string) (bool , string) {
 
-        v , found := annotations[appConf.annotation_name_threshold]
+        v , found := annotations[appConf.AnnotationNameThreshold]
         if ( found &&  v=="true" ) {
                 klog.V(0).Infof( "level2 Has Annotation ... with %s",v)
-                tconfig, found := annotations[appConf.annotation_name]
+                tconfig, found := annotations[appConf.AnnotationFlag]
                 if (found ) {
                         klog.V(0).Infof( "thresholds_config %s", tconfig)
                 }

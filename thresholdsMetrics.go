@@ -21,9 +21,9 @@ import (
 	"flag"
 	"os"
 	"path/filepath"
-
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
+        "github.com/davecgh/go-spew/spew"
 	"k8s.io/klog"
 	"k8s.io/client-go/rest"
 )
@@ -34,8 +34,10 @@ import (
 var appConf appConfig
 
 func initialize() {
-	appConf.annotation_name="sia.io/thresholds_config"
-	appConf.annotation_name_threshold="sia.io/thresholds"
+	//appConf.annotation_name="sia.io/thresholds_config"
+	//appConf.annotation_name_threshold="sia.io/thresholds"
+        appConf.GetConf("config/threshold.yml")
+        spew.Dump(appConf)
 	appConf.LOGLEVEL=os.Getenv("LOGLEVEL")
 }
 
@@ -65,10 +67,12 @@ func init_nocluster() (*kubernetes.Clientset , error) {
 			panic(err.Error())
 		}
 		clientset, err := kubernetes.NewForConfig(config)
+        	spew.Dump(config)
 		return clientset, err
 	} 
 	// create the clientset
 	clientset, err := kubernetes.NewForConfig(config)
+        spew.Dump(config)
 	return clientset, err
 }
 

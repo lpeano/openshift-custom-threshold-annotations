@@ -74,30 +74,30 @@ func (s Pods ) Pod_Watcher(clientset *kubernetes.Clientset) {
 
 }
 
-func (s Pods) ManageEvent( Srv *v1.Pod,event string) {
+func (s Pods) ManageEvent( Pd *v1.Pod,event string) {
 	switch event {
 		case "MODIFIED":
-			if x,found:=s[Srv.GetNamespace()][Srv.GetName()]; found {
-				klog.Infof("Event : %s - Srv %s present",event,x.Pod,found)
-				annotations:=Srv.GetAnnotations()
+			if x,found:=s[Pd.GetNamespace()][Pd.GetName()]; found {
+				klog.Infof("Event : %s - Pd %s present",event,x.Pod,found)
+				annotations:=Pd.GetAnnotations()
 				found, v:=is_annotated(annotations)
 				if(!found) {
 					// If annotation is missing pod must be removed from chahce
-					klog.Infof("Removing in namespace %s pod %s from cache" ,Srv.GetNamespace(),Srv.GetName())
-					delete(s[Srv.GetNamespace()],Srv.GetName())
+					klog.Infof("Removing in namespace %s pod %s from cache" ,Pd.GetNamespace(),Pd.GetName())
+					delete(s[Pd.GetNamespace()],Pd.GetName())
 					Use(v)
 				} else {
-					klog.Infof("Pod in namespace %s podname %s modified" ,Srv.GetNamespace(),Srv.GetName())
-					delete(s[Srv.GetNamespace()],Srv.GetName())
-					pd:=Buildpod(Srv)
+					klog.Infof("Pod in namespace %s podname %s modified" ,Pd.GetNamespace(),Pd.GetName())
+					delete(s[Pd.GetNamespace()],Pd.GetName())
+					pd:=Buildpod(Pd)
                                 	r, reason := s.Addpod(pd)
 					klog.Infof("Pod modifies return \"%s\" dueue to \"%s\"", r,reason)
 					
 				}		
 			 	
 			} else {
-				klog.Warningf("Event : %s - Srv %s not present must do CACHEADD",event,x.Pod,found)
-				pd:=Buildpod(Srv)
+				klog.Warningf("Event : %s - Pd %s not present must do CACHEADD",event,x.Pod,found)
+				pd:=Buildpod(Pd)
 				r, reason := s.Addpod(pd)
 				klog.Infof("Pod add return \"%s\" dueue to \"%s\"", r,reason)
 				//Use(v)
@@ -105,24 +105,24 @@ func (s Pods) ManageEvent( Srv *v1.Pod,event string) {
 			}
                         if(appConf.LOGLEVEL == "DEBUG" ) {spew.Dump(s)}
 		case "ADDED":
-			if x,found:=s[Srv.GetNamespace()][Srv.GetName()]; found {
-				klog.Warningf("Event : %s - Srv %s allready present",event,x.Pod,found)
-				pd := Pod{Pod: Srv.GetName(), Namespace: Srv.GetNamespace(), resourceVersion: Srv.GetResourceVersion()}
-				annotations:=Srv.GetAnnotations()
+			if x,found:=s[Pd.GetNamespace()][Pd.GetName()]; found {
+				klog.Warningf("Event : %s - Pd %s allready present",event,x.Pod,found)
+				pd := Pod{Pod: Pd.GetName(), Namespace: Pd.GetNamespace(), resourceVersion: Pd.GetResourceVersion()}
+				annotations:=Pd.GetAnnotations()
 				found, v:=is_annotated(annotations)
 				if (found) {
 					r, reason := s.Addpod(pd)
 					klog.Infof("Pod add return \"%s\" dueue to \"%s\"", r,reason)
 				} else {
-					klog.Infof("Pod %s.%s not annotated IGNORING",  Srv.GetName(), Srv.GetNamespace())
+					klog.Infof("Pod %s.%s not annotated IGNORING",  Pd.GetName(), Pd.GetNamespace())
 				}
 				Use(v)
 			} else {
-				annotations:=Srv.GetAnnotations()
+				annotations:=Pd.GetAnnotations()
 				found, v:=is_annotated(annotations)
 				if ( found ) {
 					//Adding new pod to cache
-					pd := Pod{Pod: Srv.GetName(), Namespace: Srv.GetNamespace(), resourceVersion: Srv.GetResourceVersion()}
+					pd := Pod{Pod: Pd.GetName(), Namespace: Pd.GetNamespace(), resourceVersion: Pd.GetResourceVersion()}
                                 	f, an := get_annotated(annotations)
 					if( f ) {
                                         err:= json.Unmarshal( []byte(an) ,&pd.metrics)
@@ -138,6 +138,15 @@ func (s Pods) ManageEvent( Srv *v1.Pod,event string) {
 				Use(v,found)
 			}
                         if(appConf.LOGLEVEL == "DEBUG" ) {spew.Dump(s)}
+
+                case "DELETED":
+                         if x,found:=s[Pd.GetNamespace()][Pd.GetName()]; found {
+                                klog.Infof("Event : %s - Pod %s present",event,x.Pod,found)
+                                klog.Infof("Pod in namespace %s podname %s deleted" ,Pd.GetNamespace(),Pd.GetName())
+                                delete(s[Pd.GetNamespace()],Pd.GetName())
+                        }
+                        if(appConf.LOGLEVEL == "DEBUG" ) {spew.Dump(s)}
+
 		default:
 			klog.Warningf("Event (%s) not supported",event)
 	}

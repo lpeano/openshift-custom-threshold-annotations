@@ -1,0 +1,10 @@
+# Log Level
+LOGLEVEL: "DEBUG" 
+# Flag to be setted to true for thresholds activation
+AnnotationFlag: "sia.io/thresholds_config" 
+# Thresholds
+AnnotationNameThreshold: "sia.io/thresholds"
+# Cache RefreshInterval
+CacheRefreshIntervall: 10 
+
+
