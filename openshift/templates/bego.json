@@ -2,7 +2,7 @@
   "kind": "Template",
   "apiVersion": "v1",
   "metadata": {
-    "name": "thresholdMetrics",
+    "name": "thresholdmetrics",
     "annotations": {
       "description": "An example Beego (http://beego.me/) application written in Golang",
       "tags": "quickstart,golang",
@@ -10,15 +10,15 @@
     }
   },
   "labels": {
-      "template": "thresholdMetrics",
-      "app": "thresholdMetrics"
+      "template": "thresholdmetrics",
+      "app": "thresholdmetrics"
   },
   "objects": [
     {
       "kind": "Service",
       "apiVersion": "v1",
       "metadata": {
-        "name": "thresholdMetrics",
+        "name": "thresholdmetrics",
         "annotations": {
           "description": "Exposes and load balances the application pods"
         }
@@ -32,7 +32,7 @@
           }
         ],
         "selector": {
-          "name": "thresholdMetrics"
+          "name": "thresholdmetrics"
         }
       }
     },
@@ -40,13 +40,13 @@
       "kind": "Route",
       "apiVersion": "v1",
       "metadata": {
-        "name": "thresholdMetrics"
+        "name": "thresholdmetrics"
       },
       "spec": {
         "host": "${APPLICATION_DOMAIN}",
         "to": {
           "kind": "Service",
-          "name": "thresholdMetrics"
+          "name": "thresholdmetrics"
         }
       }
     },
@@ -54,7 +54,7 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "thresholdMetrics",
+        "name": "thresholdmetrics",
         "annotations": {
           "description": "Keeps track of changes in the application image"
         }
@@ -64,7 +64,7 @@
       "kind": "BuildConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "thresholdMetrics",
+        "name": "thresholdmetrics",
         "annotations": {
           "description": "Defines how to build the application"
         }
@@ -79,12 +79,20 @@
           "contextDir": "${CONTEXT_DIR}"
         },
         "strategy": {
-          "type": "Docker"
-        },
+                    "dockerStrategy": {
+                        "env": [
+                            {
+                                "name": "XDG_CACHE_HOME",
+                                "value": "/tmp/"
+                            }
+                        ]
+                    },
+                    "type": "Docker"
+                },
         "output": {
           "to": {
             "kind": "ImageStreamTag",
-            "name": "thresholdMetrics:latest"
+            "name": "thresholdmetrics:latest"
           }
         },
         "triggers": [
@@ -98,7 +106,7 @@
       "kind": "DeploymentConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "thresholdMetrics",
+        "name": "thresholdmetrics",
         "annotations": {
           "description": "Defines how to deploy the application server"
         }
@@ -113,11 +121,11 @@
             "imageChangeParams": {
               "automatic": true,
               "containerNames": [
-                "thresholdMetrics"
+                "thresholdmetrics"
               ],
               "from": {
                 "kind": "ImageStreamTag",
-                "name": "thresholdMetrics:latest"
+                "name": "thresholdmetrics:latest"
               }
             }
           },
@@ -127,20 +135,21 @@
         ],
         "replicas": 1,
         "selector": {
-          "name": "thresholdMetrics"
+          "name": "thresholdmetrics"
         },
         "template": {
           "metadata": {
-            "name": "thresholdMetrics",
+            "name": "thresholdmetrics",
             "labels": {
-              "name": "thresholdMetrics"
+              "name": "thresholdmetrics"
             }
           },
           "spec": {
+            "serviceAccountName": "thresholdmetrics",
             "containers": [
               {
-                "name": "thresholdMetrics",
-                "image": "thresholdMetrics",
+                "name": "thresholdmetrics",
+                "image": "thresholdmetrics",
                 "ports": [
                   {
                     "containerPort": 7777
@@ -152,7 +161,7 @@
         }
       }
     }
-  ],
+ ],
   "parameters": [
     {
       "name": "SOURCE_REPOSITORY_URL",
@@ -170,13 +179,7 @@
     {
       "name": "APPLICATION_DOMAIN",
       "description": "The exposed hostname that will route to the Beego service",
-      "value": "thresholdMetrics.openshiftapps.com"
-    },
-    {
-      "name": "GITHUB_WEBHOOK_SECRET",
-      "description": "Github trigger secret.  A difficult to guess string encoded as part of the webhook URL.  Not encrypted.",
-      "generate": "expression",
-      "from": "[a-zA-Z0-9]{40}"
+      "value": "thresholdmetrics.openshiftapps.com"
     }
   ]
 }
