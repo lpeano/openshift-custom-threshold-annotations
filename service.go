@@ -57,8 +57,13 @@ func (s Service) SetMetricAnnotation(Met Metrics) {
 // Service Watcher
 func (s Services ) Service_Watcher(clientset *kubernetes.Clientset) {
                 timeout := int64(1800)
+		namespace := ""
                 for{
-                ServiceWatcher, err := clientset.CoreV1().Services("").Watch(metav1.ListOptions{TimeoutSeconds: &timeout, Watch: true, })
+		if appConf.Namespace{
+                        namespace=appConf.Namespace
+                }
+
+                ServiceWatcher, err := clientset.CoreV1().Services(namespace).Watch(metav1.ListOptions{TimeoutSeconds: &timeout, Watch: true, })
                 if err != nil {
                         klog.Error("Error")
                 }

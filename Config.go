@@ -14,6 +14,7 @@ name: GO_BUILDER
 type appConfig struct {
 	AnnotationFlag string `yaml:"AnnotationFlag"` 
 	AnnotationNameThreshold string `yaml:"AnnotationNameThreshold"` 
+        NameSpace string `yaml:"a,omitempty"`
 	LOGLEVEL string  `yaml:"LOGLEVEL"`
         CacheRefreshIntervall int `yaml:"CacheRefreshIntervall"`
 }

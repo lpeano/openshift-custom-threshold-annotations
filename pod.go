@@ -52,8 +52,12 @@ func (p Pod) SetMetricAnnotation(Met Metrics) {
 // Pod Watcher
 func (s Pods ) Pod_Watcher(clientset *kubernetes.Clientset) {
                 timeout := int64(1800)
+		namespace := ""
                 for{
-                PodWatcher, err := clientset.CoreV1().Pods("").Watch(metav1.ListOptions{TimeoutSeconds: &timeout, Watch: true, })
+		if appConf.Namespace{
+			namespace=appConf.Namespace
+		}
+               	PodWatcher, err := clientset.CoreV1().Pods(namespace).Watch(metav1.ListOptions{TimeoutSeconds: &timeout, Watch: true, })
                 if err != nil {
                         klog.Error("Error")
                 }
